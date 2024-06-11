@@ -1,11 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:melhoracidade/core/enums/manifestation_category_enum.dart';
+import 'package:melhoracidade/core/enums/manifestation_status_enum.dart';
 import 'package:melhoracidade/domain/entities/citizen_entity.dart';
-
-enum ManifestationStatus {
-  paused,
-  inProgress,
-  fixedUp,
-}
 
 class ManifestationEntity extends Equatable {
   final String idManifestation;
@@ -13,23 +9,24 @@ class ManifestationEntity extends Equatable {
   final String title;
   final String description;
   final String images;
-  final ManifestationStatus status;
+  final ManifestationStatusEnum status;
+  final ManifestationCategoryEnum category;
   final List<CitizenEntity> supportters;
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  ManifestationEntity(
+  const ManifestationEntity(
       {required this.idManifestation,
       required this.idAuthor,
       required this.title,
       required this.description,
       required this.images,
       required this.status,
+      required this.category,
       required this.supportters,
       required this.createdAt,
       required this.updatedAt});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [idManifestation];
 }

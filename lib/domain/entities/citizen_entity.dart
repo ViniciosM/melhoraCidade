@@ -9,7 +9,7 @@ class CitizenEntity extends Equatable {
   final int idAddress;
   final List<ManifestationEntity> supports;
 
-  CitizenEntity(
+  const CitizenEntity(
       {required this.idCitizen,
       required this.idUser,
       required this.name,

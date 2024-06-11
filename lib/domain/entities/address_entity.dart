@@ -8,7 +8,7 @@ class AddressEntity extends Equatable {
   final String state;
   final String? zipCode; // cep
 
-  AddressEntity(
+  const AddressEntity(
       {required this.idAddress,
       required this.street,
       required this.district,
