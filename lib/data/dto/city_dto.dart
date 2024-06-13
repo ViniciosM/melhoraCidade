@@ -1,7 +1,7 @@
 import 'package:melhoracidade/domain/entities/city_entity.dart';
 
 class CityDTO extends CityEntity {
-  CityDTO(
+  const CityDTO(
       {required super.idCity,
       required super.name,
       required super.uf,

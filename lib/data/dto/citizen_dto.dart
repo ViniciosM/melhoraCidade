@@ -1,7 +1,7 @@
 import 'package:melhoracidade/domain/entities/citizen_entity.dart';
 
 class CitizenDTO extends CitizenEntity {
-  CitizenDTO(
+  const CitizenDTO(
       {required super.idCitizen,
       required super.idUser,
       required super.name,

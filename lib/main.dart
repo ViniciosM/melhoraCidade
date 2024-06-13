@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:melhoracidade/presentation/auth/pages/login_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
@@ -28,7 +29,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Container(),
+      home: LoginPage(
+        key: UniqueKey(),
+      ),
     );
   }
 }
