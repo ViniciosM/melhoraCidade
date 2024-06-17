@@ -1,6 +1,6 @@
 import 'package:melhoracidade/domain/entities/citizen_entity.dart';
 import 'package:melhoracidade/domain/entities/user_entity.dart';
-import 'package:melhoracidade/domain/repositories/I_user_repository.dart';
+import 'package:melhoracidade/domain/repositories/i_user_repository.dart';
 
 class UserRepository extends IUserRepository {
   @override

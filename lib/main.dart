@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:melhoracidade/design_system/theme_data.dart';
 import 'package:melhoracidade/presentation/auth/pages/login_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -24,11 +25,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Melhora Cidade',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: VZThemeApp.themeData,
       home: LoginPage(
         key: UniqueKey(),
       ),

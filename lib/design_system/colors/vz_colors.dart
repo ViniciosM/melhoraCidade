@@ -6,15 +6,16 @@ class VZColors {
   static const ColorScheme colorScheme = ColorScheme(
     brightness: Brightness.light,
     // required
-    primary: Color(0xFFAA0012),
+    //primary: Color(0xFF1DC690),
+    primary: Color(0xFF278AB0),
     // required
-    onPrimary: Color(0xFFF4DEE0),
+    onPrimary: Color(0xFFEAEAE0),
     // required
     // primaryContainer: Color(0xFF000000),
     // onPrimaryContainer: Color(0xFF000000),
-    secondary: Color(0xFFAA0012),
+    secondary: Color(0xFF1DC690),
     // required
-    onSecondary: Color(0xFFF4DEE0),
+    onSecondary: Color(0xFFEAEAE0),
     // required
     // secondaryContainer: Color(0xFF000000),
     // onSecondaryContainer: Color(0xFF000000),
