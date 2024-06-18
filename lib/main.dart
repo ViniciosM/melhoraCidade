@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:melhoracidade/design_system/theme_data.dart';
+import 'package:melhoracidade/presentation/auth/auth_routes.dart';
 import 'package:melhoracidade/presentation/auth/pages/login_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Melhora Cidade',
       theme: VZThemeApp.themeData,
+      //initialRoute: AuthRoutes.base,
       home: LoginPage(
         key: UniqueKey(),
       ),
