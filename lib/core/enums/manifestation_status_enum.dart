@@ -1,5 +1,5 @@
 enum ManifestationStatusEnum {
   paused,
-  inProgress,
+  notSolved,
   fixedUp,
 }

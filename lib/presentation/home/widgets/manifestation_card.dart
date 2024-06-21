@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:melhoracidade/data/dto/manifestation_dto.dart';
 import 'package:melhoracidade/design_system/buttons/vz_button.dart';
 import 'package:melhoracidade/design_system/colors/vz_colors.dart';
 import 'package:melhoracidade/design_system/space/vz_space.dart';
 import 'package:melhoracidade/design_system/typography/vz_typography.dart';
+import 'package:melhoracidade/presentation/manifestation/pages/manifestation_details_page.dart';
 
 class ManifestationCard extends StatefulWidget {
-  const ManifestationCard({super.key});
+  const ManifestationCard({super.key, required this.manifestationDTO});
+
+  final ManifestationDTO manifestationDTO;
 
   @override
   State<ManifestationCard> createState() => _ManifestationCardState();
@@ -31,19 +35,19 @@ class _ManifestationCardState extends State<ManifestationCard> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                'MANIFESTATION XXX',
+                widget.manifestationDTO.title,
                 style: VZTypography.p1_600.copyWith(color: VZColors.g1),
               ),
               VZSpace.y6,
               Text(
-                'Texto Texto Texto Texto Texto Texto Texto Texto Texto Texto Texto Texto exto Texto Texto Texto Texto Texto Texto Texto Texto Texto Texto Texto',
+                widget.manifestationDTO.description,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: VZTypography.p1_400.copyWith(color: VZColors.g1),
               ),
               VZSpace.y6,
               Text(
-                'Criado por: ****** Data 01/01/2024',
+                widget.manifestationDTO.createdAt.toString(),
                 maxLines: 2,
                 style: VZTypography.p2_400.copyWith(color: VZColors.g1),
               ),
@@ -59,7 +63,18 @@ class _ManifestationCardState extends State<ManifestationCard> {
               style: VZTypography.p1_600.copyWith(color: VZColors.g1),
             ),
             VZSpace.y6,
-            VZButtons.primary(onPressed: () {}, text: 'Apoiar')
+            VZButtons.iconTextButtonRight(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ManifestationDetailsPage(
+                              manifestationDTO: widget.manifestationDTO)));
+                },
+                text: 'Ver mais',
+                icon: Icons.chevron_right_outlined,
+                iconColor: VZColors.colorScheme.primary,
+                backgroudColor: VZColors.g6),
           ],
         )
       ]),

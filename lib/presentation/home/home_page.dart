@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:melhoracidade/core/enums/manifestation_category_enum.dart';
+import 'package:melhoracidade/core/enums/manifestation_status_enum.dart';
+import 'package:melhoracidade/data/dto/manifestation_dto.dart';
 import 'package:melhoracidade/design_system/space/vz_space.dart';
 import 'package:melhoracidade/presentation/home/widgets/filter_manifestations.dart';
 import 'package:melhoracidade/presentation/home/widgets/header_user.dart';
@@ -33,7 +36,21 @@ class _HomePageState extends State<HomePage> {
                   //shrinkWrap: true,
                   itemCount: 10,
                   itemBuilder: (_, index) {
-                    return ManifestationCard();
+                    return ManifestationCard(
+                      manifestationDTO: ManifestationDTO(
+                        idManifestation: index.toString(),
+                        idAuthor: '1',
+                        category: ManifestationCategoryEnum.infraestrutura,
+                        title: 'Ruas universitárias sem asfasto',
+                        description:
+                            'A logística para a Universidade X precisa ser melhorada. Os ônibus têm dificuldades no trajeto...',
+                        images: '',
+                        status: ManifestationStatusEnum.notSolved,
+                        supportters: [],
+                        createdAt: DateTime.now(),
+                        updatedAt: DateTime.now(),
+                      ),
+                    );
                   },
                   separatorBuilder: (context, index) => VZSpace.y16,
                 ),
