@@ -1,8 +1,16 @@
+import 'dart:developer';
+
+import 'package:melhoracidade/data/datasources/auth_datasource.dart';
 import 'package:melhoracidade/domain/entities/citizen_entity.dart';
 import 'package:melhoracidade/domain/entities/user_entity.dart';
 import 'package:melhoracidade/domain/repositories/i_user_repository.dart';
 
 class UserRepository extends IUserRepository {
+  final IAuthDataSource _authDataSource;
+
+  UserRepository({required IAuthDataSource authDataSource})
+      : _authDataSource = authDataSource;
+
   @override
   Future<void> createAccount({required UserEntity userEntity}) {
     // TODO: implement createAccount
@@ -10,9 +18,13 @@ class UserRepository extends IUserRepository {
   }
 
   @override
-  Future<void> doLogin({required String email, required String password}) {
-    // TODO: implement doLogin
-    throw UnimplementedError();
+  Future<void> doLogin(
+      {required String email, required String password}) async {
+    try {
+      await _authDataSource.doLogin(email: email, password: password);
+    } catch (e) {
+      log('[DO LOGIN DATASOURCE] Error: $e');
+    }
   }
 
   @override
