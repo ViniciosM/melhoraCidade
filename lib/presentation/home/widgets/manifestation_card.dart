@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:melhoracidade/core/utils/date_format_utils.dart';
+
 import 'package:melhoracidade/data/dto/manifestation_dto.dart';
 import 'package:melhoracidade/design_system/buttons/vz_button.dart';
 import 'package:melhoracidade/design_system/colors/vz_colors.dart';
@@ -26,9 +30,16 @@ class _ManifestationCardState extends State<ManifestationCard> {
       child: Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           Container(
-            height: 100,
-            width: 100,
-            color: Colors.grey,
+            width: 110,
+            height: 110,
+            decoration: BoxDecoration(
+              border: Border.all(color: VZColors.g0),
+            ),
+            child: Image.asset(
+              widget.manifestationDTO.images,
+              fit: BoxFit
+                  .cover, // Ajuste de como a imagem é exibida dentro do Container
+            ),
           ),
           VZSpace.x10,
           Expanded(
@@ -47,7 +58,8 @@ class _ManifestationCardState extends State<ManifestationCard> {
               ),
               VZSpace.y6,
               Text(
-                widget.manifestationDTO.createdAt.toString(),
+                DateFormatUtils.formatDateExtended(
+                    widget.manifestationDTO.createdAt),
                 maxLines: 2,
                 style: VZTypography.p2_400.copyWith(color: VZColors.g1),
               ),
@@ -59,7 +71,7 @@ class _ManifestationCardState extends State<ManifestationCard> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '150 apoios',
+              '${Random().nextInt(500)} apoios',
               style: VZTypography.p1_600.copyWith(color: VZColors.g1),
             ),
             VZSpace.y6,

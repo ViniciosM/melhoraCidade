@@ -20,10 +20,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       DoLoginEvent event, Emitter<LoginState> emit) async {
     emit(const LoginState(status: LoginStatus.loading));
     try {
-      await _doLoginUseCase.call(email: event.email, password: event.password);
+      final logged = await _doLoginUseCase.call(
+          email: event.email, password: event.password);
+
+      if (logged) {
+        emit(const LoginState(
+          status: LoginStatus.logged,
+        ));
+      }
 
       emit(const LoginState(
-        status: LoginStatus.logged,
+        status: LoginStatus.failure,
       ));
     } catch (e) {
       log('BLOC [DO LOGIN] ERROR: $e');

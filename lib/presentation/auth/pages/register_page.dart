@@ -16,6 +16,12 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Criar conta',
+          style: VZTypography.h1_600.copyWith(color: VZColors.g1),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           reverse: true,
@@ -26,10 +32,6 @@ class _RegisterPageState extends State<RegisterPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 VZSpace.y40,
-                Text(
-                  'Criar conta',
-                  style: VZTypography.h1_600.copyWith(color: VZColors.g1),
-                ),
                 VZSpace.y40,
                 VZTextField(
                   label: 'Nome',

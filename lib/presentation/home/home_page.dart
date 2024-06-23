@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:melhoracidade/core/enums/manifestation_category_enum.dart';
 import 'package:melhoracidade/core/enums/manifestation_status_enum.dart';
+import 'package:melhoracidade/core/mocks/manifestations_mock.dart';
 import 'package:melhoracidade/data/dto/manifestation_dto.dart';
+import 'package:melhoracidade/design_system/colors/vz_colors.dart';
+import 'package:melhoracidade/design_system/dividers/vz_divider.dart';
 import 'package:melhoracidade/design_system/space/vz_space.dart';
 import 'package:melhoracidade/presentation/home/widgets/filter_manifestations.dart';
 import 'package:melhoracidade/presentation/home/widgets/header_user.dart';
@@ -29,28 +32,20 @@ class _HomePageState extends State<HomePage> {
                 key: UniqueKey(),
               ),
               VZSpace.y24,
+              const Divider(
+                thickness: 1,
+                color: VZColors.g2,
+              ),
+              VZSpace.y24,
               FilterManifestations(key: UniqueKey()),
               VZSpace.y24,
               Expanded(
                 child: ListView.separated(
                   //shrinkWrap: true,
-                  itemCount: 10,
+                  itemCount: manifestationsMock.length,
                   itemBuilder: (_, index) {
                     return ManifestationCard(
-                      manifestationDTO: ManifestationDTO(
-                        idManifestation: index.toString(),
-                        idAuthor: '1',
-                        category: ManifestationCategoryEnum.infraestrutura,
-                        title: 'Ruas universitárias sem asfasto',
-                        description:
-                            'A logística para a Universidade X precisa ser melhorada. Os ônibus têm dificuldades no trajeto...',
-                        images: '',
-                        status: ManifestationStatusEnum.notSolved,
-                        supportters: [],
-                        createdAt: DateTime.now(),
-                        updatedAt: DateTime.now(),
-                      ),
-                    );
+                        manifestationDTO: manifestationsMock[index]);
                   },
                   separatorBuilder: (context, index) => VZSpace.y16,
                 ),

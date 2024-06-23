@@ -48,17 +48,15 @@ class _LoginPageState extends State<LoginPage> {
         }
       },
       child: Scaffold(
-        body: SingleChildScrollView(
-          reverse: true,
+        body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                VZSpace.y40,
                 Image.asset('assets/images/melhoracidade.png'),
-                VZSpace.y40,
+                VZSpace.x32,
                 VZTextField(
                   controller: _emailController,
                   label: 'Email',
@@ -103,9 +101,15 @@ class _LoginPageState extends State<LoginPage> {
                   child: VZButtons.textButton(
                       onPressed: () {}, description: 'Esqueceu a senha?'),
                 ),
-                VZSpace.y40,
+                VZSpace.y32,
                 VZButtons.primary(
                     onPressed: () {
+                      // if (_emailController.text.isNotEmpty &&
+                      //     _passwordController.text.isNotEmpty) {
+                      //   LoginBloc().add(DoLoginEvent(
+                      //       email: _emailController.text,
+                      //       password: _passwordController.text));
+                      // }
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -117,14 +121,12 @@ class _LoginPageState extends State<LoginPage> {
                 VZSpace.y20,
                 VZButtons.secondary(
                     onPressed: () {
-                      if (_emailController.text.isNotEmpty &&
-                          _passwordController.text.isNotEmpty) {
-                        LoginBloc().add(DoLoginEvent(
-                            email: _emailController.text,
-                            password: _passwordController.text));
-                      }
-
-                      // Navigator.pushNamed(context, AuthRoutes.criarConta);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage(
+                                    key: UniqueKey(),
+                                  )));
                     },
                     text: 'Criar conta'),
               ],

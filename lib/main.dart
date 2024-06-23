@@ -1,24 +1,30 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:melhoracidade/core/di/main_di.dart';
 import 'package:melhoracidade/design_system/theme_data.dart';
-import 'package:melhoracidade/presentation/auth/auth_routes.dart';
 import 'package:melhoracidade/presentation/auth/pages/login_page.dart';
+import 'package:melhoracidade/presentation/home/home_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await dotenv.load(fileName: ".env");
+  final String url = dotenv.env['URL'] ?? '';
+  final String anonkey = dotenv.env['anonkey'] ?? '';
   await Supabase.initialize(
-    url:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlqd2l4bWlqZ3l4c2R4ZnRrdm1mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc0NDgyNjEsImV4cCI6MjAzMzAyNDI2MX0.6acIxEmujlSpXNu8h_zNLM0NWBQ3Zi6gMVwEJeRmG5A',
-    anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlqd2l4bWlqZ3l4c2R4ZnRrdm1mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc0NDgyNjEsImV4cCI6MjAzMzAyNDI2MX0.6acIxEmujlSpXNu8h_zNLM0NWBQ3Zi6gMVwEJeRmG5A',
+    url: url,
+    anonKey: anonkey,
   );
-
+  setupDependencyInjection();
+  //SupabaseClient supabaseClient = SupabaseClient(url, anonkey);
   runApp(const MyApp());
 }
 
-// It's handy to then extract the Supabase client in a variable for later uses
-//final supabase = Supabase.instance.client;
+final supabase = Supabase.instance.client;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -30,9 +36,13 @@ class MyApp extends StatelessWidget {
       title: 'Melhora Cidade',
       theme: VZThemeApp.themeData,
       //initialRoute: AuthRoutes.base,
-      home: LoginPage(
-        key: UniqueKey(),
-      ),
+      home: supabase.auth.currentSession == null
+          ? LoginPage(
+              key: UniqueKey(),
+            )
+          : HomePage(
+              key: UniqueKey(),
+            ),
     );
   }
 }

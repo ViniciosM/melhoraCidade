@@ -18,12 +18,19 @@ class UserRepository extends IUserRepository {
   }
 
   @override
-  Future<void> doLogin(
+  Future<bool> doLogin(
       {required String email, required String password}) async {
     try {
-      await _authDataSource.doLogin(email: email, password: password);
+      final logged =
+          await _authDataSource.doLogin(email: email, password: password);
+      if (logged) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (e) {
       log('[DO LOGIN DATASOURCE] Error: $e');
+      return false;
     }
   }
 
